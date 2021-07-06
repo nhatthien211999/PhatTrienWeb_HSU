@@ -1,0 +1,34 @@
+﻿@model List<WebApplication2.Models.Product>
+
+
+<div>
+    <!-- product -->
+
+
+    <img src="~/@Model[0].Image" class="img-responsive" alt="" />
+    <h2 class="name">
+        @Model[0].ProductName
+    </h2>
+
+
+    <p><i name="price">@Model[0].Price </i><small>VNĐ</small></p>
+
+    <br />
+
+
+
+    <strong>Mô tả</strong>
+    <p name="des">@Model[0].Descriptions</p>
+    <p name="productId">@Model[0].ProductID</p>
+    <p name=></p>
+    <br />
+
+    @Html.ActionLink("Thêm giỏ hàng", "AddItem", "Cart", new { productId = Model[0].ProductID,quatity = 1 },null)
+
+
+
+
+
+
+    <!-- end product -->
+</div>

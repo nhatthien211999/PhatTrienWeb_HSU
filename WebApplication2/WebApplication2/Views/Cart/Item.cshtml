@@ -1,0 +1,57 @@
+﻿@using WebApplication2.Models;
+@{ 
+    IEnumerable<CartItem> ls =(IEnumerable<CartItem>)ViewBag.Cart;
+}
+<div class="cart">
+    <h2 style="color:blue">My Cart</h2>
+    <br />
+    @if (ls == null || ls.Count() == 0)
+    {
+        <h3>Bạn chưa có sản phẩm</h3>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã SP</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Ảnh</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ls)
+                {
+                    <tr>
+                        <td>@item.Product.ProductID</td>
+                        <td>@item.Product.ProductName</td>
+                        <td><img src="~/@item.Product.Image" width="100px" /></td>
+                        <td><input type="text" class="quatity" data-id="@item.Product.ProductID" value="@item.Quatity" /></td>
+                        <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                        <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quatity).ToString("N0"))</td>
+                        <td><button class="btn-del" id="@item.Product.ProductID">X</button></td>
+                    </tr>
+                }
+                <tr>
+                    <td>Tổng tiền</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@Session["total"]</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <br />
+        <button id="btn-continue">Tiếp tục mua hàng</button>
+        <button id="btn-update">Cập nhập giỏ hàng</button>
+        <button id="btn-delete-cart">Xoá giỏ hàng</button>
+        <button id="btn-thanh-toan">Thanh toán</button>
+    }
+
+</div>
+<script src="~/Scripts/controller/cartController.js"></script>

@@ -1,0 +1,10 @@
+﻿@model List<WebApplication2.Models.Category>
+
+
+<ul class="categories">
+    @foreach (var element in Model)
+    {
+        <li><a href="@Url.Action("CategoryItem","Category", new { id = element.CategoryID})">@element.CategoryName</a></li>
+        @*<p><a href="@Url.Action("Detail","Product", new { id = Model[i].ProductID})">@Model[i].ProductName</a></p><span class="price">@Model[i].Price.ToString()</span><br />*@
+    }
+</ul>
